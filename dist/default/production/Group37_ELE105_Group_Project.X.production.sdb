@@ -1,0 +1,301 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F2221 ]
+[d frameptr 4065 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\__lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\almod.c
+[v ___almod __almod `(l  1 e 4 0 ]
+"9 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\aodiv.c
+[v ___aodiv __aodiv `(o  1 e 8 0 ]
+"9 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\aomod.c
+[v ___aomod __aomod `(o  1 e 8 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\atdiv.c
+[v ___atdiv __atdiv `(m  1 e 3 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\atmod.c
+[v ___atmod __atmod `(m  1 e 3 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"4 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\flge.c
+[v ___flge __flge `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\llmod.c
+[v ___llmod __llmod `(ul  1 e 4 0 ]
+"9 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\lodiv.c
+[v ___lodiv __lodiv `(uo  1 e 8 0 ]
+"9 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\lomod.c
+[v ___lomod __lomod `(uo  1 e 8 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\ltdiv.c
+[v ___ltdiv __ltdiv `(um  1 e 3 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\ltmod.c
+[v ___ltmod __ltmod `(um  1 e 3 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul24.c
+[v ___tmul __tmul `(um  1 e 3 0 ]
+"15 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"10 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
+"42 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X\I2C7.c
+[v _I2C_INIT I2C_INIT `(v  1 e 1 0 ]
+"71
+[v _UpdateLineData UpdateLineData `(v  1 e 1 0 ]
+"89
+[v _I2C_Initialise I2C_Initialise `(v  1 e 1 0 ]
+"96
+[v _I2C_checkbus_free I2C_checkbus_free `(v  1 e 1 0 ]
+"101
+[v _I2C_Start I2C_Start `(v  1 e 1 0 ]
+"107
+[v _I2C_RepeatedStart I2C_RepeatedStart `(v  1 e 1 0 ]
+"113
+[v _I2C_Stop I2C_Stop `(v  1 e 1 0 ]
+"119
+[v _I2C_Write I2C_Write `(v  1 e 1 0 ]
+"125
+[v _I2C_Read I2C_Read `(uc  1 e 1 0 ]
+"18 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X\Main.c
+[v _WaitFor WaitFor `(v  1 e 1 0 ]
+"24
+[v _SetUpLEDs SetUpLEDs `(v  1 e 1 0 ]
+"47
+[v _ShowTest ShowTest `(v  1 e 1 0 ]
+"55
+[v _main main `(i  1 e 2 0 ]
+"32 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X\PWM10bit_2.c
+[v _PWM_INIT PWM_INIT `(v  1 e 1 0 ]
+"47
+[v _goforward goforward `(v  1 e 1 0 ]
+"60
+[v _configPWM configPWM `(v  1 e 1 0 ]
+"74
+[v _MovementPWM MovementPWM `(v  1 e 1 0 ]
+"19 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X/I2C.h
+[v _linesensor linesensor `uc  1 e 1 0 ]
+"15 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X/PWM.h
+[v _markspaceL markspaceL `ui  1 e 2 0 ]
+"16
+[v _markspaceR markspaceR `ui  1 e 2 0 ]
+[s S33 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 LATA3 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+`uc 1 LATA6 1 0 :1:6 
+`uc 1 LATA7 1 0 :1:7 
+]
+"745 C:/Users/cex/.mchp_packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc/pic18f2221.h
+[s S42 . 1 `uc 1 LA0 1 0 :1:0 
+`uc 1 LA1 1 0 :1:1 
+`uc 1 LA2 1 0 :1:2 
+`uc 1 LA3 1 0 :1:3 
+`uc 1 LA4 1 0 :1:4 
+`uc 1 LA5 1 0 :1:5 
+`uc 1 LA6 1 0 :1:6 
+`uc 1 LA7 1 0 :1:7 
+]
+[u S51 . 1 `S33 1 . 1 0 `S42 1 . 1 0 ]
+[v _LATAbits LATAbits `VES51  1 e 1 @3977 ]
+"830
+[v _LATB LATB `VEuc  1 e 1 @3978 ]
+[s S73 . 1 `uc 1 LATB0 1 0 :1:0 
+`uc 1 LATB1 1 0 :1:1 
+`uc 1 LATB2 1 0 :1:2 
+`uc 1 LATB3 1 0 :1:3 
+`uc 1 LATB4 1 0 :1:4 
+`uc 1 LATB5 1 0 :1:5 
+`uc 1 LATB6 1 0 :1:6 
+`uc 1 LATB7 1 0 :1:7 
+]
+"857
+[s S82 . 1 `uc 1 LB0 1 0 :1:0 
+`uc 1 LB1 1 0 :1:1 
+`uc 1 LB2 1 0 :1:2 
+`uc 1 LB3 1 0 :1:3 
+`uc 1 LB4 1 0 :1:4 
+`uc 1 LB5 1 0 :1:5 
+`uc 1 LB6 1 0 :1:6 
+`uc 1 LB7 1 0 :1:7 
+]
+[u S91 . 1 `S73 1 . 1 0 `S82 1 . 1 0 ]
+[v _LATBbits LATBbits `VES91  1 e 1 @3978 ]
+"1054
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"1276
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+[s S206 . 1 `uc 1 TRISB0 1 0 :1:0 
+`uc 1 TRISB1 1 0 :1:1 
+`uc 1 TRISB2 1 0 :1:2 
+`uc 1 TRISB3 1 0 :1:3 
+`uc 1 TRISB4 1 0 :1:4 
+`uc 1 TRISB5 1 0 :1:5 
+`uc 1 TRISB6 1 0 :1:6 
+`uc 1 TRISB7 1 0 :1:7 
+]
+"1308
+[s S215 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+[u S224 . 1 `S206 1 . 1 0 `S215 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES224  1 e 1 @3987 ]
+"1498
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+"3380
+[v _CCP2CON CCP2CON `VEuc  1 e 1 @4026 ]
+"3466
+[v _CCPR2L CCPR2L `VEuc  1 e 1 @4027 ]
+"3480
+[v _CCP1CON CCP1CON `VEuc  1 e 1 @4029 ]
+"3643
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @4030 ]
+"3728
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+"3953
+[v _SSPCON2 SSPCON2 `VEuc  1 e 1 @4037 ]
+"4048
+[v _SSPCON1 SSPCON1 `VEuc  1 e 1 @4038 ]
+"4118
+[v _SSPSTAT SSPSTAT `VEuc  1 e 1 @4039 ]
+"4339
+[v _SSPADD SSPADD `VEuc  1 e 1 @4040 ]
+"4346
+[v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
+"4353
+[v _T2CON T2CON `VEuc  1 e 1 @4042 ]
+"4451
+[v _PR2 PR2 `VEuc  1 e 1 @4043 ]
+"6046
+[v _ACKEN ACKEN `VEb  1 e 0 @32300 ]
+"6883
+[v _PEN PEN `VEb  1 e 0 @32298 ]
+"7015
+[v _RCEN RCEN `VEb  1 e 0 @32299 ]
+"7048
+[v _RSEN RSEN `VEb  1 e 0 @32297 ]
+"7105
+[v _SEN SEN `VEb  1 e 0 @32296 ]
+"55 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X\Main.c
+[v _main main `(i  1 e 2 0 ]
+{
+"74
+} 0
+"47 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X\PWM10bit_2.c
+[v _goforward goforward `(v  1 e 1 0 ]
+{
+[v goforward@Speed Speed `ui  1 p 2 2 ]
+"58
+} 0
+"74
+[v _MovementPWM MovementPWM `(v  1 e 1 0 ]
+{
+"80
+} 0
+"47 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X\Main.c
+[v _ShowTest ShowTest `(v  1 e 1 0 ]
+{
+"54
+} 0
+"71 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X\I2C7.c
+[v _UpdateLineData UpdateLineData `(v  1 e 1 0 ]
+{
+"82
+} 0
+"119
+[v _I2C_Write I2C_Write `(v  1 e 1 0 ]
+{
+[v I2C_Write@write write `uc  1 p 1 wreg ]
+[v I2C_Write@write write `uc  1 p 1 wreg ]
+"121
+[v I2C_Write@write write `uc  1 p 1 1 ]
+"123
+} 1
+"113
+[v _I2C_Stop I2C_Stop `(v  1 e 1 0 ]
+{
+"117
+} 0
+"101
+[v _I2C_Start I2C_Start `(v  1 e 1 0 ]
+{
+"105
+} 0
+"107
+[v _I2C_RepeatedStart I2C_RepeatedStart `(v  1 e 1 0 ]
+{
+"111
+} 0
+"125
+[v _I2C_Read I2C_Read `(uc  1 e 1 0 ]
+{
+"127
+[v I2C_Read@temp temp `uc  1 a 1 1 ]
+"135
+} 0
+"96
+[v _I2C_checkbus_free I2C_checkbus_free `(v  1 e 1 0 ]
+{
+"99
+} 0
+"24 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X\Main.c
+[v _SetUpLEDs SetUpLEDs `(v  1 e 1 0 ]
+{
+"29
+} 0
+"32 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X\PWM10bit_2.c
+[v _PWM_INIT PWM_INIT `(v  1 e 1 0 ]
+{
+"42
+} 0
+"60
+[v _configPWM configPWM `(v  1 e 1 0 ]
+{
+"68
+} 0
+"42 C:\Users\cex\Documents\Uni Coding Projects\ELE105\Group37 ELE105 Group Project.X\I2C7.c
+[v _I2C_INIT I2C_INIT `(v  1 e 1 0 ]
+{
+"51
+} 0
+"89
+[v _I2C_Initialise I2C_Initialise `(v  1 e 1 0 ]
+{
+"95
+} 0
