@@ -72,10 +72,10 @@ return;
 
 // This function is NESSECARY when moving the Motors translates the PWM to fit with the registers
 void MovementPWM(void){
-    CCP1CON = (0x0c)|((markspaceL&0x03)<<4);//0x0c enables PWM,then insert the 2 LSB
-    CCPR1L = markspaceL>>2; //of markspaceL into CCP1CON and the higher 8 bits into
-    CCP2CON = (0x0c)|((markspaceR&0x03)<<4); //CCPR1L.  Same as above but for 
-    CCPR2L = markspaceR>>2;
+    CCP1CON = (0x0c)|((markspaceR&0x03)<<4);//0x0c enables PWM,then insert the 2 LSB
+    CCPR1L = markspaceR>>2; //of markspaceL into CCP1CON and the higher 8 bits into
+    CCP2CON = (0x0c)|((markspaceL&0x03)<<4); //CCPR1L.  Same as above but for 
+    CCPR2L = markspaceL>>2;
     return;
 }
 
