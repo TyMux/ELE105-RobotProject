@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Group37 ELE105 Group Project.X
+PROJECTNAME=ELE105-RobotProject
 
 # Active Configuration
 DEFAULTCONF=default

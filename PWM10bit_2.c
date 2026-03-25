@@ -23,7 +23,7 @@
 #define Rightmotor4A LATBbits.LB1
 void PWM_INIT(void); // Set Up PWM
 void configPWM(void);       //Configure PWM
-void goforward(unsigned int Speed);       //Turn both motors forward
+void goforward(unsigned int RightSpeed, unsigned int LeftSpeed);       //Turn both motors forward
 void MovementPWM(void);     // Handles the PWM for translating movement to the registers
 unsigned int markspaceL;    //Mark space ratio for Left motor
 unsigned int markspaceR;    //Mark space ratio for Right motor
@@ -44,10 +44,10 @@ configPWM();          	  //Configure PWM
 
 
 
-void goforward(unsigned int Speed){
+void goforward(unsigned int RightSpeed, unsigned int LeftSpeed){
     
-    markspaceL = Speed;
-    markspaceR = Speed;
+    markspaceL = LeftSpeed;
+    markspaceR = RightSpeed;
     
     Leftmotor1A = 0;    //Left motor forward;
     Leftmotor2A = 1;    
