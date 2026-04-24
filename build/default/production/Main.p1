@@ -1,4 +1,37 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"469 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc/pic18f2221.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc/pic18f2221.h: 469:     struct {
+[s S21 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S21 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"479
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc/pic18f2221.h: 479:     struct {
+[s S22 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S22 . T1OSO T1OSI CCP1 SCK SDI SDO TX RX ]
+"489
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc/pic18f2221.h: 489:     struct {
+[s S23 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S23 . T13CKI CCP2 P1A SCL SDA . CK DT ]
+"499
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc/pic18f2221.h: 499:     struct {
+[s S24 :1 `uc 1 ]
+[n S24 . T1CKI ]
+"502
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc/pic18f2221.h: 502:     struct {
+[s S25 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S25 . . PA2 PA1 ]
+"468
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc/pic18f2221.h: 468: typedef union {
+[u S20 `S21 1 `S22 1 `S23 1 `S24 1 `S25 1 ]
+[n S20 . . . . . . ]
+"508
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc/pic18f2221.h: 508: extern volatile PORTCbits_t PORTCbits __attribute__((address(0xF82)));
+[v _PORTCbits `VS20 ~T0 @X0 0 e@3970 ]
+"28 Main.c
+[; ;Main.c: 28: void Move(unsigned int Speed, int RightRatio);
+[v _Move `(v ~T0 @X0 0 ef2`ui`i ]
+"23
+[; ;Main.c: 23: void WaitFor(unsigned int TimeSeconds);
+[v _WaitFor `(v ~T0 @X0 0 ef1`ui ]
 [v F205 `(v ~T0 @X0 1 tf1`ul ]
 "20 C:\Program Files\Microchip\xc8\v3.10\pic\include/builtins.h
 [v __delay `JF205 ~T0 @X0 0 e ]
@@ -43,17 +76,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "11 ./PWM.h
 [; ;./PWM.h: 11: void PWM_INIT(void);
 [v _PWM_INIT `(v ~T0 @X0 0 ef ]
-"20 Main.c
-[; ;Main.c: 20: void MovementSystem(unsigned int Speed);
-[v _MovementSystem `(v ~T0 @X0 0 ef1`ui ]
-"22
-[; ;Main.c: 22: int FollowLine(unsigned int Speed);
-[v _FollowLine `(i ~T0 @X0 0 ef1`ui ]
+"27 Main.c
+[; ;Main.c: 27: void MovementSystem(void);
+[v _MovementSystem `(v ~T0 @X0 0 ef ]
+"29
+[; ;Main.c: 29: int FollowLine(void);
+[v _FollowLine `(i ~T0 @X0 0 ef ]
 "13 ./PWM.h
-[; ;./PWM.h: 13: void goforward(unsigned int RightSpeed, unsigned int LeftSpeed);
-[v _goforward `(v ~T0 @X0 0 ef2`ui`ui ]
-"23 Main.c
-[; ;Main.c: 23: int LookUpRobotLineOffset(void);
+[; ;./PWM.h: 13: void goforward(int RightSpeed, int LeftSpeed);
+[v _goforward `(v ~T0 @X0 0 ef2`i`i ]
+"30 Main.c
+[; ;Main.c: 30: int LookUpRobotLineOffset(void);
 [v _LookUpRobotLineOffset `(i ~T0 @X0 0 ef ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc/pic18f2221.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18Fxxxx_DFP/1.6.159/xc8\pic\include\proc/pic18f2221.h: 54: __asm("PORTA equ 0F80h");
@@ -457,407 +490,540 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19 ./I2C.h
 [; ;./I2C.h: 19: unsigned char linesensor;
 [v _linesensor `uc ~T0 @X0 1 e ]
-"30 Main.c
-[; ;Main.c: 30: void WaitFor(unsigned int TimeSeconds){
+"10 Main.c
+[; ;Main.c: 10: int LEncoderReading = 0;
+[v _LEncoderReading `i ~T0 @X0 1 e ]
+[i _LEncoderReading
+-> 0 `i
+]
+"12
+[; ;Main.c: 12: int REncoderReading = 0;
+[v _REncoderReading `i ~T0 @X0 1 e ]
+[i _REncoderReading
+-> 0 `i
+]
+"18
+[; ;Main.c: 18: int CurrentSpeed = 0;
+[v _CurrentSpeed `i ~T0 @X0 1 e ]
+[i _CurrentSpeed
+-> 0 `i
+]
+"35
+[; ;Main.c: 35: int ReadEncoderL(void){
+[v _ReadEncoderL `(i ~T0 @X0 1 ef ]
+{
+[e :U _ReadEncoderL ]
+[f ]
+"36
+[; ;Main.c: 36:     int pulse = 0;
+[v _pulse `i ~T0 @X0 1 a ]
+[e = _pulse -> 0 `i ]
+"37
+[; ;Main.c: 37:     if(PORTCbits.RC0 == 1 && LEncoderReading == 0) {
+[e $ ! && == -> . . _PORTCbits 0 0 `i -> 1 `i == _LEncoderReading -> 0 `i 253  ]
+{
+"38
+[; ;Main.c: 38:         LEncoderReading = PORTCbits.RC0;
+[e = _LEncoderReading -> . . _PORTCbits 0 0 `i ]
+"39
+[; ;Main.c: 39:         pulse = 1;
+[e = _pulse -> 1 `i ]
+"40
+[; ;Main.c: 40:     }
+}
+[e :U 253 ]
+"41
+[; ;Main.c: 41:     LEncoderReading = PORTCbits.RC0;
+[e = _LEncoderReading -> . . _PORTCbits 0 0 `i ]
+"42
+[; ;Main.c: 42:     return pulse;
+[e ) _pulse ]
+[e $UE 252  ]
+"44
+[; ;Main.c: 44: }
+[e :UE 252 ]
+}
+"48
+[; ;Main.c: 48: void Turn(unsigned int Quarters){
+[v _Turn `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _Turn ]
+[v _Quarters `ui ~T0 @X0 1 r1 ]
+[f ]
+"49
+[; ;Main.c: 49:     int TotalPulses = Quarters * 130;
+[v _TotalPulses `i ~T0 @X0 1 a ]
+[e = _TotalPulses -> * _Quarters -> -> 130 `i `ui `i ]
+"50
+[; ;Main.c: 50:     int CurrentPulses = 0;
+[v _CurrentPulses `i ~T0 @X0 1 a ]
+[e = _CurrentPulses -> 0 `i ]
+"51
+[; ;Main.c: 51:     while (CurrentPulses < TotalPulses){
+[e $U 255  ]
+[e :U 256 ]
+{
+"52
+[; ;Main.c: 52:         Move(0, 250);
+[e ( _Move (2 , -> -> 0 `i `ui -> 250 `i ]
+"53
+[; ;Main.c: 53:         CurrentPulses += ReadEncoderL();
+[e =+ _CurrentPulses ( _ReadEncoderL ..  ]
+"54
+[; ;Main.c: 54:     }
+}
+[e :U 255 ]
+"51
+[; ;Main.c: 51:     while (CurrentPulses < TotalPulses){
+[e $ < _CurrentPulses _TotalPulses 256  ]
+[e :U 257 ]
+"55
+[; ;Main.c: 55:     Move(0,0);
+[e ( _Move (2 , -> -> 0 `i `ui -> 0 `i ]
+"56
+[; ;Main.c: 56:     WaitFor(5);
+[e ( _WaitFor (1 -> -> 5 `i `ui ]
+"57
+[; ;Main.c: 57: }
+[e :UE 254 ]
+}
+"59
+[; ;Main.c: 59: void WaitFor(unsigned int TimeSeconds){
 [v _WaitFor `(v ~T0 @X0 1 ef1`ui ]
 {
 [e :U _WaitFor ]
 [v _TimeSeconds `ui ~T0 @X0 1 r1 ]
 [f ]
-"31
-[; ;Main.c: 31:     for(unsigned int i = 0; i < TimeSeconds * 10; i++){
-{
-[v _i `ui ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `ui ]
-[e $U 256  ]
-[e :U 253 ]
-{
-"32
-[; ;Main.c: 32:         _delay((unsigned long)((100)*(10000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
-"33
-[; ;Main.c: 33:     }
-}
-[e ++ _i -> -> 1 `i `ui ]
-[e :U 256 ]
-[e $ < _i * _TimeSeconds -> -> 10 `i `ui 253  ]
-[e :U 254 ]
-}
-"34
-[; ;Main.c: 34: }
-[e :UE 252 ]
-}
-"38
-[; ;Main.c: 38: void SetUpLEDs(void){
-[v _SetUpLEDs `(v ~T0 @X0 1 ef ]
-{
-[e :U _SetUpLEDs ]
-[f ]
-"39
-[; ;Main.c: 39:     TRISBbits.TRISB2 = 0;
-[e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
-"40
-[; ;Main.c: 40:     TRISBbits.TRISB3 = 0;
-[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
-"41
-[; ;Main.c: 41:     TRISBbits.TRISB4 = 0;
-[e = . . _TRISBbits 0 4 -> -> 0 `i `uc ]
-"42
-[; ;Main.c: 42:     TRISBbits.TRISB5 = 0;
-[e = . . _TRISBbits 0 5 -> -> 0 `i `uc ]
-"43
-[; ;Main.c: 43: }
-[e :UE 257 ]
-}
-"47
-[; ;Main.c: 47: void FlashLEDs(unsigned int Flashes){
-[v _FlashLEDs `(v ~T0 @X0 1 ef1`ui ]
-{
-[e :U _FlashLEDs ]
-[v _Flashes `ui ~T0 @X0 1 r1 ]
-[f ]
-"48
-[; ;Main.c: 48:     SetUpLEDs();
-[e ( _SetUpLEDs ..  ]
-"49
-[; ;Main.c: 49:     for(unsigned int i = 0; i < Flashes; i++){
+"60
+[; ;Main.c: 60:     for(unsigned int i = 0; i < TimeSeconds * 10; i++){
 {
 [v _i `ui ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `ui ]
 [e $U 262  ]
 [e :U 259 ]
 {
-"50
-[; ;Main.c: 50:         LATBbits.LB2 = 1;
-[e = . . _LATBbits 1 2 -> -> 1 `i `uc ]
-"51
-[; ;Main.c: 51:         LATBbits.LB3 = 1;
-[e = . . _LATBbits 1 3 -> -> 1 `i `uc ]
-"52
-[; ;Main.c: 52:         LATBbits.LB4 = 1;
-[e = . . _LATBbits 1 4 -> -> 1 `i `uc ]
-"53
-[; ;Main.c: 53:         LATBbits.LB5 = 1;
-[e = . . _LATBbits 1 5 -> -> 1 `i `uc ]
-"54
-[; ;Main.c: 54:         WaitFor(1);
-[e ( _WaitFor (1 -> -> 1 `i `ui ]
-"56
-[; ;Main.c: 56:         LATBbits.LB2 = 0;
-[e = . . _LATBbits 1 2 -> -> 0 `i `uc ]
-"57
-[; ;Main.c: 57:         LATBbits.LB3 = 0;
-[e = . . _LATBbits 1 3 -> -> 0 `i `uc ]
-"58
-[; ;Main.c: 58:         LATBbits.LB4 = 0;
-[e = . . _LATBbits 1 4 -> -> 0 `i `uc ]
-"59
-[; ;Main.c: 59:         LATBbits.LB5 = 0;
-[e = . . _LATBbits 1 5 -> -> 0 `i `uc ]
-"60
-[; ;Main.c: 60:         WaitFor(1);
-[e ( _WaitFor (1 -> -> 1 `i `ui ]
 "61
-[; ;Main.c: 61:     }
+[; ;Main.c: 61:         _delay((unsigned long)((100)*(10000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
+"62
+[; ;Main.c: 62:     }
 }
 [e ++ _i -> -> 1 `i `ui ]
 [e :U 262 ]
-[e $ < _i _Flashes 259  ]
+[e $ < _i * _TimeSeconds -> -> 10 `i `ui 259  ]
 [e :U 260 ]
 }
-"62
-[; ;Main.c: 62: }
+"63
+[; ;Main.c: 63: }
 [e :UE 258 ]
 }
-"66
-[; ;Main.c: 66: void ShowTest(void){
+"67
+[; ;Main.c: 67: void SetUpLEDs(void){
+[v _SetUpLEDs `(v ~T0 @X0 1 ef ]
+{
+[e :U _SetUpLEDs ]
+[f ]
+"68
+[; ;Main.c: 68:     TRISBbits.TRISB2 = 0;
+[e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
+"69
+[; ;Main.c: 69:     TRISBbits.TRISB3 = 0;
+[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
+"70
+[; ;Main.c: 70:     TRISBbits.TRISB4 = 0;
+[e = . . _TRISBbits 0 4 -> -> 0 `i `uc ]
+"71
+[; ;Main.c: 71:     TRISBbits.TRISB5 = 0;
+[e = . . _TRISBbits 0 5 -> -> 0 `i `uc ]
+"72
+[; ;Main.c: 72: }
+[e :UE 263 ]
+}
+"76
+[; ;Main.c: 76: void FlashLEDs(unsigned int Flashes){
+[v _FlashLEDs `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _FlashLEDs ]
+[v _Flashes `ui ~T0 @X0 1 r1 ]
+[f ]
+"77
+[; ;Main.c: 77:     SetUpLEDs();
+[e ( _SetUpLEDs ..  ]
+"78
+[; ;Main.c: 78:     for(unsigned int i = 0; i < Flashes; i++){
+{
+[v _i `ui ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `ui ]
+[e $U 268  ]
+[e :U 265 ]
+{
+"79
+[; ;Main.c: 79:         LATBbits.LB2 = 1;
+[e = . . _LATBbits 1 2 -> -> 1 `i `uc ]
+"80
+[; ;Main.c: 80:         LATBbits.LB3 = 1;
+[e = . . _LATBbits 1 3 -> -> 1 `i `uc ]
+"81
+[; ;Main.c: 81:         LATBbits.LB4 = 1;
+[e = . . _LATBbits 1 4 -> -> 1 `i `uc ]
+"82
+[; ;Main.c: 82:         LATBbits.LB5 = 1;
+[e = . . _LATBbits 1 5 -> -> 1 `i `uc ]
+"83
+[; ;Main.c: 83:         WaitFor(1);
+[e ( _WaitFor (1 -> -> 1 `i `ui ]
+"85
+[; ;Main.c: 85:         LATBbits.LB2 = 0;
+[e = . . _LATBbits 1 2 -> -> 0 `i `uc ]
+"86
+[; ;Main.c: 86:         LATBbits.LB3 = 0;
+[e = . . _LATBbits 1 3 -> -> 0 `i `uc ]
+"87
+[; ;Main.c: 87:         LATBbits.LB4 = 0;
+[e = . . _LATBbits 1 4 -> -> 0 `i `uc ]
+"88
+[; ;Main.c: 88:         LATBbits.LB5 = 0;
+[e = . . _LATBbits 1 5 -> -> 0 `i `uc ]
+"89
+[; ;Main.c: 89:         WaitFor(1);
+[e ( _WaitFor (1 -> -> 1 `i `ui ]
+"90
+[; ;Main.c: 90:     }
+}
+[e ++ _i -> -> 1 `i `ui ]
+[e :U 268 ]
+[e $ < _i _Flashes 265  ]
+[e :U 266 ]
+}
+"91
+[; ;Main.c: 91: }
+[e :UE 264 ]
+}
+"95
+[; ;Main.c: 95: void ShowTest(void){
 [v _ShowTest `(v ~T0 @X0 1 ef ]
 {
 [e :U _ShowTest ]
 [f ]
-"67
-[; ;Main.c: 67:     UpdateLineData();
+"96
+[; ;Main.c: 96:     UpdateLineData();
 [e ( _UpdateLineData ..  ]
-"69
-[; ;Main.c: 69:     LATBbits.LB2 = (linesensor >> 2) & 1;
+"98
+[; ;Main.c: 98:     LATBbits.LB2 = (linesensor >> 2) & 1;
 [e = . . _LATBbits 1 2 -> & >> -> _linesensor `i -> 2 `i -> 1 `i `uc ]
-"70
-[; ;Main.c: 70:     LATBbits.LB3 = (linesensor >> 3) & 1;
+"99
+[; ;Main.c: 99:     LATBbits.LB3 = (linesensor >> 3) & 1;
 [e = . . _LATBbits 1 3 -> & >> -> _linesensor `i -> 3 `i -> 1 `i `uc ]
-"71
-[; ;Main.c: 71:     LATBbits.LB4 = (linesensor >> 4) & 1;
+"100
+[; ;Main.c: 100:     LATBbits.LB4 = (linesensor >> 4) & 1;
 [e = . . _LATBbits 1 4 -> & >> -> _linesensor `i -> 4 `i -> 1 `i `uc ]
-"72
-[; ;Main.c: 72:     LATBbits.LB5 = (linesensor >> 5) & 1;
+"101
+[; ;Main.c: 101:     LATBbits.LB5 = (linesensor >> 5) & 1;
 [e = . . _LATBbits 1 5 -> & >> -> _linesensor `i -> 5 `i -> 1 `i `uc ]
-"73
-[; ;Main.c: 73: }
-[e :UE 263 ]
+"102
+[; ;Main.c: 102: }
+[e :UE 269 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"77
-[; ;Main.c: 77: int main(void){
+"106
+[; ;Main.c: 106: int main(void){
 [v _main `(i ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"78
-[; ;Main.c: 78:     I2C_INIT();
+"107
+[; ;Main.c: 107:     I2C_INIT();
 [e ( _I2C_INIT ..  ]
-"79
-[; ;Main.c: 79:     PWM_INIT();
+"108
+[; ;Main.c: 108:     PWM_INIT();
 [e ( _PWM_INIT ..  ]
-"80
-[; ;Main.c: 80:     SetUpLEDs();
+"109
+[; ;Main.c: 109:     SetUpLEDs();
 [e ( _SetUpLEDs ..  ]
-"82
-[; ;Main.c: 82:     unsigned int Speed = 300;
-[v _Speed `ui ~T0 @X0 1 a ]
-[e = _Speed -> -> 300 `i `ui ]
-"84
-[; ;Main.c: 84:     while(1){
-[e :U 266 ]
+"111
+[; ;Main.c: 111:     CurrentSpeed = 300;
+[e = _CurrentSpeed -> 300 `i ]
+"113
+[; ;Main.c: 113:     while(1){
+[e :U 272 ]
 {
-"85
-[; ;Main.c: 85:         UpdateLineData();
+"114
+[; ;Main.c: 114:         UpdateLineData();
 [e ( _UpdateLineData ..  ]
-"86
-[; ;Main.c: 86:         MovementSystem(Speed);
-[e ( _MovementSystem (1 _Speed ]
-"87
-[; ;Main.c: 87:     }
+"115
+[; ;Main.c: 115:         MovementSystem();
+[e ( _MovementSystem ..  ]
+"116
+[; ;Main.c: 116:     }
 }
-[e :U 265 ]
-[e $U 266  ]
-[e :U 267 ]
-"88
-[; ;Main.c: 88: }
-[e :UE 264 ]
+[e :U 271 ]
+[e $U 272  ]
+[e :U 273 ]
+"117
+[; ;Main.c: 117: }
+[e :UE 270 ]
 }
-"92
-[; ;Main.c: 92: void MovementSystem(unsigned int Speed){
-[v _MovementSystem `(v ~T0 @X0 1 ef1`ui ]
+"121
+[; ;Main.c: 121: void MovementSystem(void){
+[v _MovementSystem `(v ~T0 @X0 1 ef ]
 {
 [e :U _MovementSystem ]
-[v _Speed `ui ~T0 @X0 1 r1 ]
 [f ]
-"93
-[; ;Main.c: 93:     int RightRatio = FollowLine(Speed);
-[v _RightRatio `i ~T0 @X0 1 a ]
-[e = _RightRatio ( _FollowLine (1 _Speed ]
-"95
-[; ;Main.c: 95: }
-[e :UE 268 ]
+"122
+[; ;Main.c: 122:     int Difference = FollowLine();
+[v _Difference `i ~T0 @X0 1 a ]
+[e = _Difference ( _FollowLine ..  ]
+"123
+[; ;Main.c: 123:     if(Difference == -111){
+[e $ ! == _Difference -U -> 111 `i 275  ]
+{
+"124
+[; ;Main.c: 124:         Turn(2);
+[e ( _Turn (1 -> -> 2 `i `ui ]
+"125
+[; ;Main.c: 125:         CurrentSpeed = 0;
+[e = _CurrentSpeed -> 0 `i ]
+"126
+[; ;Main.c: 126:     }
 }
-"99
-[; ;Main.c: 99: void Move(unsigned int Speed, int RightRatio){
+[e $U 276  ]
+"127
+[; ;Main.c: 127:     else if(Difference == 999){
+[e :U 275 ]
+[e $ ! == _Difference -> 999 `i 277  ]
+{
+"128
+[; ;Main.c: 128:         CurrentSpeed = 150;
+[e = _CurrentSpeed -> 150 `i ]
+"129
+[; ;Main.c: 129:         Difference = 0;
+[e = _Difference -> 0 `i ]
+"130
+[; ;Main.c: 130:     }
+}
+[e $U 278  ]
+"131
+[; ;Main.c: 131:     else{
+[e :U 277 ]
+{
+"132
+[; ;Main.c: 132:         CurrentSpeed = 300;
+[e = _CurrentSpeed -> 300 `i ]
+"133
+[; ;Main.c: 133:     }
+}
+[e :U 278 ]
+[e :U 276 ]
+"134
+[; ;Main.c: 134:     Move(CurrentSpeed, Difference);
+[e ( _Move (2 , -> _CurrentSpeed `ui _Difference ]
+"135
+[; ;Main.c: 135: }
+[e :UE 274 ]
+}
+"138
+[; ;Main.c: 138: void Move(unsigned int Speed, int Difference){
 [v _Move `(v ~T0 @X0 1 ef2`ui`i ]
 {
 [e :U _Move ]
 [v _Speed `ui ~T0 @X0 1 r1 ]
-[v _RightRatio `i ~T0 @X0 1 r2 ]
+[v _Difference `i ~T0 @X0 1 r2 ]
 [f ]
-"101
-[; ;Main.c: 101:     if(Speed > 1023){
-[e $ ! > _Speed -> -> 1023 `i `ui 270  ]
+"140
+[; ;Main.c: 140:     if(Speed > 1023){
+[e $ ! > _Speed -> -> 1023 `i `ui 280  ]
 {
-"102
-[; ;Main.c: 102:         Speed = 1023;
+"141
+[; ;Main.c: 141:         Speed = 1023;
 [e = _Speed -> -> 1023 `i `ui ]
-"103
-[; ;Main.c: 103:     }
+"142
+[; ;Main.c: 142:     }
 }
-[e :U 270 ]
-"105
-[; ;Main.c: 105:     unsigned int LeftSpeed = Speed;
-[v _LeftSpeed `ui ~T0 @X0 1 a ]
-[e = _LeftSpeed _Speed ]
-"106
-[; ;Main.c: 106:     unsigned int RightSpeed = (unsigned int)(Speed * (RightRatio/100));
-[v _RightSpeed `ui ~T0 @X0 1 a ]
-[e = _RightSpeed * _Speed -> / _RightRatio -> 100 `i `ui ]
-"108
-[; ;Main.c: 108:     goforward(RightSpeed, LeftSpeed);
+[e :U 280 ]
+"144
+[; ;Main.c: 144:     int LeftSpeed = Speed - Difference;
+[v _LeftSpeed `i ~T0 @X0 1 a ]
+[e = _LeftSpeed -> - _Speed -> _Difference `ui `i ]
+"145
+[; ;Main.c: 145:     int RightSpeed = Speed + Difference;
+[v _RightSpeed `i ~T0 @X0 1 a ]
+[e = _RightSpeed -> + _Speed -> _Difference `ui `i ]
+"147
+[; ;Main.c: 147:     goforward(RightSpeed, LeftSpeed);
 [e ( _goforward (2 , _RightSpeed _LeftSpeed ]
-"109
-[; ;Main.c: 109: }
-[e :UE 269 ]
+"148
+[; ;Main.c: 148: }
+[e :UE 279 ]
 }
-"113
-[; ;Main.c: 113: int FollowLine(unsigned int Speed){
-[v _FollowLine `(i ~T0 @X0 1 ef1`ui ]
+"152
+[; ;Main.c: 152: int FollowLine(void){
+[v _FollowLine `(i ~T0 @X0 1 ef ]
 {
 [e :U _FollowLine ]
-[v _Speed `ui ~T0 @X0 1 r1 ]
 [f ]
-"115
-[; ;Main.c: 115:     int theta = LookUpRobotLineOffset();
+"154
+[; ;Main.c: 154:     int theta = LookUpRobotLineOffset();
 [v _theta `i ~T0 @X0 1 a ]
 [e = _theta ( _LookUpRobotLineOffset ..  ]
-"117
-[; ;Main.c: 117:     if(theta == 999){
-[e $ ! == _theta -> 999 `i 272  ]
+"156
+[; ;Main.c: 156:     if(theta == 999){
+[e $ ! == _theta -> 999 `i 282  ]
 {
-"118
-[; ;Main.c: 118:         return 1;
-[e ) -> 1 `i ]
-[e $UE 271  ]
-"119
-[; ;Main.c: 119:     }
+"157
+[; ;Main.c: 157:         return 999;
+[e ) -> 999 `i ]
+[e $UE 281  ]
+"158
+[; ;Main.c: 158:     }
 }
-[e :U 272 ]
-"121
-[; ;Main.c: 121:     int e = -theta;
+[e :U 282 ]
+"159
+[; ;Main.c: 159:     if(theta == -111){
+[e $ ! == _theta -U -> 111 `i 283  ]
+{
+"160
+[; ;Main.c: 160:         return -111;
+[e ) -U -> 111 `i ]
+[e $UE 281  ]
+"161
+[; ;Main.c: 161:     }
+}
+[e :U 283 ]
+"163
+[; ;Main.c: 163:     int e = -theta;
 [v _e `i ~T0 @X0 1 a ]
 [e = _e -U _theta ]
-"122
-[; ;Main.c: 122:     int u = 20 * e;
-[v _u `i ~T0 @X0 1 a ]
-[e = _u * -> 20 `i _e ]
-"124
-[; ;Main.c: 124:     unsigned int vR = Speed + 1 * u;
-[v _vR `ui ~T0 @X0 1 a ]
-[e = _vR + _Speed -> * -> 1 `i _u `ui ]
-"126
-[; ;Main.c: 126:     unsigned int vL = Speed - 1 * u;
-[v _vL `ui ~T0 @X0 1 a ]
-[e = _vL - _Speed -> * -> 1 `i _u `ui ]
-"128
-[; ;Main.c: 128:     if(vL == 0){
-[e $ ! == _vL -> -> 0 `i `ui 273  ]
-{
-"129
-[; ;Main.c: 129:         return 1;
-[e ) -> 1 `i ]
-[e $UE 271  ]
-"130
-[; ;Main.c: 130:     }
+"164
+[; ;Main.c: 164:     return 30 * e * 1;
+[e ) * * -> 30 `i _e -> 1 `i ]
+[e $UE 281  ]
+"166
+[; ;Main.c: 166: }
+[e :UE 281 ]
 }
-[e :U 273 ]
-"132
-[; ;Main.c: 132:     goforward(vR, vL);
-[e ( _goforward (2 , _vR _vL ]
-"133
-[; ;Main.c: 133:     return (int)(vR * 100) / vL;
-[e ) -> / -> -> * _vR -> -> 100 `i `ui `i `ui _vL `i ]
-[e $UE 271  ]
-"134
-[; ;Main.c: 134: }
-[e :UE 271 ]
-}
-"138
-[; ;Main.c: 138: int LookUpRobotLineOffset(void){
+"177
+[; ;Main.c: 177: int LookUpRobotLineOffset(void){
 [v _LookUpRobotLineOffset `(i ~T0 @X0 1 ef ]
 {
 [e :U _LookUpRobotLineOffset ]
 [f ]
-"139
-[; ;Main.c: 139:     switch(linesensor){
-[e $U 276  ]
+"178
+[; ;Main.c: 178:     unsigned char inverted = (~linesensor) & 0xFF;
+[v _inverted `uc ~T0 @X0 1 a ]
+[e = _inverted -> & ~ -> _linesensor `i -> 255 `i `uc ]
+"180
+[; ;Main.c: 180:     switch(inverted){
+[e $U 286  ]
 {
-"141
-[; ;Main.c: 141:         case 0x80: return -12;
-[e :U 277 ]
-[e ) -U -> 12 `i ]
-[e $UE 274  ]
-"142
-[; ;Main.c: 142:         case 0xC0: return -10;
-[e :U 278 ]
-[e ) -U -> 10 `i ]
-[e $UE 274  ]
-"143
-[; ;Main.c: 143:         case 0x40: return -9;
-[e :U 279 ]
-[e ) -U -> 9 `i ]
-[e $UE 274  ]
-"144
-[; ;Main.c: 144:         case 0x60: return -7;
-[e :U 280 ]
-[e ) -U -> 7 `i ]
-[e $UE 274  ]
-"145
-[; ;Main.c: 145:         case 0x20: return -5;
-[e :U 281 ]
-[e ) -U -> 5 `i ]
-[e $UE 274  ]
-"146
-[; ;Main.c: 146:         case 0x30: return -3;
-[e :U 282 ]
-[e ) -U -> 3 `i ]
-[e $UE 274  ]
-"147
-[; ;Main.c: 147:         case 0x10: return -2;
-[e :U 283 ]
-[e ) -U -> 2 `i ]
-[e $UE 274  ]
-"148
-[; ;Main.c: 148:         case 0x18: return 0;
-[e :U 284 ]
-[e ) -> 0 `i ]
-[e $UE 274  ]
-"149
-[; ;Main.c: 149:         case 0x08: return 2;
-[e :U 285 ]
-[e ) -> 2 `i ]
-[e $UE 274  ]
-"150
-[; ;Main.c: 150:         case 0x0C: return 3;
-[e :U 286 ]
-[e ) -> 3 `i ]
-[e $UE 274  ]
-"151
-[; ;Main.c: 151:         case 0x04: return 5;
+"182
+[; ;Main.c: 182:         case 0x80: return -12;
 [e :U 287 ]
-[e ) -> 5 `i ]
-[e $UE 274  ]
-"152
-[; ;Main.c: 152:         case 0x06: return 7;
+[e ) -U -> 12 `i ]
+[e $UE 284  ]
+"183
+[; ;Main.c: 183:         case 0xC0: return -10;
 [e :U 288 ]
-[e ) -> 7 `i ]
-[e $UE 274  ]
-"153
-[; ;Main.c: 153:         case 0x02: return 9;
+[e ) -U -> 10 `i ]
+[e $UE 284  ]
+"184
+[; ;Main.c: 184:         case 0x40: return -9;
 [e :U 289 ]
-[e ) -> 9 `i ]
-[e $UE 274  ]
-"154
-[; ;Main.c: 154:         case 0x03: return 10;
+[e ) -U -> 9 `i ]
+[e $UE 284  ]
+"185
+[; ;Main.c: 185:         case 0x60: return -7;
 [e :U 290 ]
-[e ) -> 10 `i ]
-[e $UE 274  ]
-"155
-[; ;Main.c: 155:         case 0x01: return 12;
+[e ) -U -> 7 `i ]
+[e $UE 284  ]
+"186
+[; ;Main.c: 186:         case 0x20: return -5;
 [e :U 291 ]
-[e ) -> 12 `i ]
-[e $UE 274  ]
-"157
-[; ;Main.c: 157:         default: return 999;
+[e ) -U -> 5 `i ]
+[e $UE 284  ]
+"187
+[; ;Main.c: 187:         case 0x30: return -3;
 [e :U 292 ]
+[e ) -U -> 3 `i ]
+[e $UE 284  ]
+"188
+[; ;Main.c: 188:         case 0x10: return -2;
+[e :U 293 ]
+[e ) -U -> 2 `i ]
+[e $UE 284  ]
+"189
+[; ;Main.c: 189:         case 0x18: return 0;
+[e :U 294 ]
+[e ) -> 0 `i ]
+[e $UE 284  ]
+"190
+[; ;Main.c: 190:         case 0x08: return 2;
+[e :U 295 ]
+[e ) -> 2 `i ]
+[e $UE 284  ]
+"191
+[; ;Main.c: 191:         case 0x0C: return 3;
+[e :U 296 ]
+[e ) -> 3 `i ]
+[e $UE 284  ]
+"192
+[; ;Main.c: 192:         case 0x04: return 5;
+[e :U 297 ]
+[e ) -> 5 `i ]
+[e $UE 284  ]
+"193
+[; ;Main.c: 193:         case 0x06: return 7;
+[e :U 298 ]
+[e ) -> 7 `i ]
+[e $UE 284  ]
+"194
+[; ;Main.c: 194:         case 0x02: return 9;
+[e :U 299 ]
+[e ) -> 9 `i ]
+[e $UE 284  ]
+"195
+[; ;Main.c: 195:         case 0x03: return 10;
+[e :U 300 ]
+[e ) -> 10 `i ]
+[e $UE 284  ]
+"196
+[; ;Main.c: 196:         case 0x01: return 12;
+[e :U 301 ]
+[e ) -> 12 `i ]
+[e $UE 284  ]
+"199
+[; ;Main.c: 199:         case 0xFF: return -111;
+[e :U 302 ]
+[e ) -U -> 111 `i ]
+[e $UE 284  ]
+"201
+[; ;Main.c: 201:         default: return 999;
+[e :U 303 ]
 [e ) -> 999 `i ]
-[e $UE 274  ]
-"158
-[; ;Main.c: 158:     }
+[e $UE 284  ]
+"202
+[; ;Main.c: 202:     }
 }
-[e $U 275  ]
-[e :U 276 ]
-[e [\ _linesensor , $ -> 128 `i 277
- , $ -> 192 `i 278
- , $ -> 64 `i 279
- , $ -> 96 `i 280
- , $ -> 32 `i 281
- , $ -> 48 `i 282
- , $ -> 16 `i 283
- , $ -> 24 `i 284
- , $ -> 8 `i 285
- , $ -> 12 `i 286
- , $ -> 4 `i 287
- , $ -> 6 `i 288
- , $ -> 2 `i 289
- , $ -> 3 `i 290
- , $ -> 1 `i 291
- 292 ]
-[e :U 275 ]
-"159
-[; ;Main.c: 159: }
-[e :UE 274 ]
+[e $U 285  ]
+[e :U 286 ]
+[e [\ _inverted , $ -> 128 `i 287
+ , $ -> 192 `i 288
+ , $ -> 64 `i 289
+ , $ -> 96 `i 290
+ , $ -> 32 `i 291
+ , $ -> 48 `i 292
+ , $ -> 16 `i 293
+ , $ -> 24 `i 294
+ , $ -> 8 `i 295
+ , $ -> 12 `i 296
+ , $ -> 4 `i 297
+ , $ -> 6 `i 298
+ , $ -> 2 `i 299
+ , $ -> 3 `i 300
+ , $ -> 1 `i 301
+ , $ -> 255 `i 302
+ 303 ]
+[e :U 285 ]
+"203
+[; ;Main.c: 203: }
+[e :UE 284 ]
 }

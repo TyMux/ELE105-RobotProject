@@ -10,7 +10,7 @@
 
 void PWM_INIT(void);
 void configPWM(void);       //Configure PWM
-void goforward(unsigned int RightSpeed, unsigned int LeftSpeed);      //Turn both motors forward
+void goforward(int RightSpeed, int LeftSpeed);      //Turn both motors forward
 void MovementPWM(void);  // Movement config for all movement
 unsigned int markspaceL;    //Mark space ratio for Left motor
 unsigned int markspaceR; 

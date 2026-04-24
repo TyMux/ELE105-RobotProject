@@ -6,10 +6,17 @@
 #define LED2 LATBbits.LB3
 #define LED3 LATBbits.LB4
 #define LED4 LATBbits.LB5
+#define LEncoder PORTCbits.RC0
+int LEncoderReading = 0;
+#define REncoder PORTCbits.RC5
+int REncoderReading = 0;
+
 
 #define _XTAL_FREQ 10000000
-
-#define K 20        // proportional gain
+#define QuarterPulses 130
+#define BaseSpeed 300
+int CurrentSpeed = 0;
+#define K 30        // proportional gain
 #define Lambda 1
 
 // Function prototypes
@@ -17,15 +24,37 @@ void WaitFor(unsigned int TimeSeconds);
 void SetUpLEDs(void);
 void FlashLEDs(unsigned int Flashes);
 void ShowTest(void);
-void MovementSystem(unsigned int Speed);
+void MovementSystem(void);
 void Move(unsigned int Speed, int RightRatio);
-int FollowLine(unsigned int Speed);
+int FollowLine(void);
 int LookUpRobotLineOffset(void);
 
-// External variable (make sure this exists in your I2C code)
 
 
-// ----------------------------
+
+int ReadEncoderL(void){
+    int pulse = 0;
+    if(LEncoder == 1 && LEncoderReading == 0) {
+        LEncoderReading = LEncoder;
+        pulse = 1;
+    }
+    LEncoderReading = LEncoder;
+    return pulse;
+    
+}
+
+
+
+void Turn(unsigned int Quarters){
+    int TotalPulses = Quarters * QuarterPulses;
+    int CurrentPulses = 0;
+    while (CurrentPulses < TotalPulses){
+        Move(0, 250);
+        CurrentPulses += ReadEncoderL();
+    }
+    Move(0,0);
+    WaitFor(5);
+}
 
 void WaitFor(unsigned int TimeSeconds){
     for(unsigned int i = 0; i < TimeSeconds * 10; i++){
@@ -33,7 +62,7 @@ void WaitFor(unsigned int TimeSeconds){
     }
 }
 
-// ----------------------------
+
 
 void SetUpLEDs(void){
     TRISBbits.TRISB2 = 0;
@@ -42,7 +71,7 @@ void SetUpLEDs(void){
     TRISBbits.TRISB5 = 0;
 }
 
-// ----------------------------
+
 
 void FlashLEDs(unsigned int Flashes){
     SetUpLEDs();
@@ -61,7 +90,7 @@ void FlashLEDs(unsigned int Flashes){
     }
 }
 
-// ----------------------------
+
 
 void ShowTest(void){
     UpdateLineData();
@@ -72,71 +101,83 @@ void ShowTest(void){
     LED4 = (linesensor >> 5) & 1;
 }
 
-// ----------------------------
+
 
 int main(void){
     I2C_INIT();
     PWM_INIT();
     SetUpLEDs();
 
-    unsigned int Speed = 300;
+    CurrentSpeed = BaseSpeed;
 
     while(1){
         UpdateLineData();
-        MovementSystem(Speed);
+        MovementSystem();
     }
 }
 
-// ----------------------------
 
-void MovementSystem(unsigned int Speed){
-    int RightRatio = FollowLine(Speed);
-    //Move(Speed, RightRatio);
+
+void MovementSystem(void){
+    int Difference = FollowLine();
+    if(Difference == -111){
+        Turn(2);
+        CurrentSpeed = 0;
+    }
+    else if(Difference == 999){
+        CurrentSpeed = 150;
+        Difference = 0;
+    }
+    else{
+        CurrentSpeed = BaseSpeed;
+    }
+    Move(CurrentSpeed, Difference);
 }
 
-// ----------------------------
 
-void Move(unsigned int Speed, int RightRatio){
+void Move(unsigned int Speed, int Difference){
 
     if(Speed > 1023){
         Speed = 1023;
     }
-
-    unsigned int LeftSpeed = Speed;
-    unsigned int RightSpeed = (unsigned int)(Speed * (RightRatio/100));
+    
+    int LeftSpeed = Speed - Difference;
+    int RightSpeed = Speed + Difference;
 
     goforward(RightSpeed, LeftSpeed);
 }
 
-// ----------------------------
 
-int FollowLine(unsigned int Speed){
+
+int FollowLine(void){ //  Returns the difference
 
     int theta = LookUpRobotLineOffset();
 
     if(theta == 999){
-        return 1; // straight
+        return 999; // straight
+    }
+    if(theta == -111){
+        return -111; // Hit an event marker
     }
 
     int e = -theta;
-    int u = K * e;
+    return K * e * Lambda;
 
-    unsigned int vR = Speed + Lambda * u;
-    
-    unsigned int vL = Speed - Lambda * u;
-
-    if(vL == 0){
-        return 1;
-    }
-
-    goforward(vR, vL);
-    return (int)(vR * 100) / vL; // scaled ratio
 }
 
-// ----------------------------
+
+
+    
+
+
+
+
+
 
 int LookUpRobotLineOffset(void){
-    switch(linesensor){
+    unsigned char inverted = (~linesensor) & 0xFF; // REMOVE THIS LATER
+    //switch(linesensor){ Add this later
+    switch(inverted){
 
         case 0x80: return -12;
         case 0xC0: return -10;
@@ -153,7 +194,10 @@ int LookUpRobotLineOffset(void){
         case 0x02: return 9;
         case 0x03: return 10;
         case 0x01: return 12;
-
+        
+        
+        case 0xFF: return -111;
+        
         default: return 999;
     }
 }

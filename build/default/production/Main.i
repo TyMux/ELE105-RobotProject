@@ -4128,7 +4128,7 @@ unsigned char __t3rd16on(void);
 # 11 "./PWM.h"
 void PWM_INIT(void);
 void configPWM(void);
-void goforward(unsigned int RightSpeed, unsigned int LeftSpeed);
+void goforward(int RightSpeed, int LeftSpeed);
 void MovementPWM(void);
 unsigned int markspaceL;
 unsigned int markspaceR;
@@ -4146,20 +4146,60 @@ unsigned char I2C_Read(void);
 unsigned char linesensor;
 void UpdateLineData(void);
 # 4 "Main.c" 2
-# 16 "Main.c"
+
+
+
+
+
+
+int LEncoderReading = 0;
+
+int REncoderReading = 0;
+
+
+
+
+
+int CurrentSpeed = 0;
+
+
+
+
 void WaitFor(unsigned int TimeSeconds);
 void SetUpLEDs(void);
 void FlashLEDs(unsigned int Flashes);
 void ShowTest(void);
-void MovementSystem(unsigned int Speed);
+void MovementSystem(void);
 void Move(unsigned int Speed, int RightRatio);
-int FollowLine(unsigned int Speed);
+int FollowLine(void);
 int LookUpRobotLineOffset(void);
 
 
 
 
+int ReadEncoderL(void){
+    int pulse = 0;
+    if(PORTCbits.RC0 == 1 && LEncoderReading == 0) {
+        LEncoderReading = PORTCbits.RC0;
+        pulse = 1;
+    }
+    LEncoderReading = PORTCbits.RC0;
+    return pulse;
 
+}
+
+
+
+void Turn(unsigned int Quarters){
+    int TotalPulses = Quarters * 130;
+    int CurrentPulses = 0;
+    while (CurrentPulses < TotalPulses){
+        Move(0, 250);
+        CurrentPulses += ReadEncoderL();
+    }
+    Move(0,0);
+    WaitFor(5);
+}
 
 void WaitFor(unsigned int TimeSeconds){
     for(unsigned int i = 0; i < TimeSeconds * 10; i++){
@@ -4213,64 +4253,67 @@ int main(void){
     PWM_INIT();
     SetUpLEDs();
 
-    unsigned int Speed = 300;
+    CurrentSpeed = 300;
 
     while(1){
         UpdateLineData();
-        MovementSystem(Speed);
+        MovementSystem();
     }
 }
 
 
 
-void MovementSystem(unsigned int Speed){
-    int RightRatio = FollowLine(Speed);
-
+void MovementSystem(void){
+    int Difference = FollowLine();
+    if(Difference == -111){
+        Turn(2);
+        CurrentSpeed = 0;
+    }
+    else if(Difference == 999){
+        CurrentSpeed = 150;
+        Difference = 0;
+    }
+    else{
+        CurrentSpeed = 300;
+    }
+    Move(CurrentSpeed, Difference);
 }
 
 
-
-void Move(unsigned int Speed, int RightRatio){
+void Move(unsigned int Speed, int Difference){
 
     if(Speed > 1023){
         Speed = 1023;
     }
 
-    unsigned int LeftSpeed = Speed;
-    unsigned int RightSpeed = (unsigned int)(Speed * (RightRatio/100));
+    int LeftSpeed = Speed - Difference;
+    int RightSpeed = Speed + Difference;
 
     goforward(RightSpeed, LeftSpeed);
 }
 
 
 
-int FollowLine(unsigned int Speed){
+int FollowLine(void){
 
     int theta = LookUpRobotLineOffset();
 
     if(theta == 999){
-        return 1;
+        return 999;
+    }
+    if(theta == -111){
+        return -111;
     }
 
     int e = -theta;
-    int u = 20 * e;
+    return 30 * e * 1;
 
-    unsigned int vR = Speed + 1 * u;
-
-    unsigned int vL = Speed - 1 * u;
-
-    if(vL == 0){
-        return 1;
-    }
-
-    goforward(vR, vL);
-    return (int)(vR * 100) / vL;
 }
-
-
-
+# 177 "Main.c"
 int LookUpRobotLineOffset(void){
-    switch(linesensor){
+    unsigned char inverted = (~linesensor) & 0xFF;
+
+    switch(inverted){
 
         case 0x80: return -12;
         case 0xC0: return -10;
@@ -4287,6 +4330,9 @@ int LookUpRobotLineOffset(void){
         case 0x02: return 9;
         case 0x03: return 10;
         case 0x01: return 12;
+
+
+        case 0xFF: return -111;
 
         default: return 999;
     }

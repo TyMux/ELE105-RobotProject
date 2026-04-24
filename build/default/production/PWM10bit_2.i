@@ -4283,7 +4283,7 @@ char *tempnam(const char *, const char *);
 # 11 "./PWM.h"
 void PWM_INIT(void);
 void configPWM(void);
-void goforward(unsigned int RightSpeed, unsigned int LeftSpeed);
+void goforward(int RightSpeed, int LeftSpeed);
 void MovementPWM(void);
 unsigned int markspaceL;
 unsigned int markspaceR;
@@ -4298,7 +4298,7 @@ unsigned int markspaceR;
 
 void PWM_INIT(void);
 void configPWM(void);
-void goforward(unsigned int RightSpeed, unsigned int LeftSpeed);
+void goforward(int RightSpeed, int LeftSpeed);
 void MovementPWM(void);
 unsigned int markspaceL;
 unsigned int markspaceR;
@@ -4319,15 +4319,30 @@ configPWM();
 
 
 
-void goforward(unsigned int RightSpeed, unsigned int LeftSpeed){
+void goforward(int RightSpeed, int LeftSpeed){
 
     markspaceL = LeftSpeed;
     markspaceR = RightSpeed;
 
-    LATAbits.LA4 = 0;
-    LATAbits.LA5 = 1;
-    LATBbits.LB0 = 0;
-    LATBbits.LB1 = 1;
+    if(LeftSpeed < 0){
+        LATAbits.LA4 = 1;
+        LATAbits.LA5 = 0;
+        markspaceL = -markspaceL;
+    }
+    else{
+        LATAbits.LA4 = 0;
+        LATAbits.LA5 = 1;
+    }
+    if(RightSpeed < 0){
+        LATBbits.LB0 = 1;
+        LATBbits.LB1 = 0;
+        markspaceR = -markspaceR;
+    }
+    else{
+        LATBbits.LB0 = 0;
+        LATBbits.LB1 = 1;
+    }
+
     MovementPWM();
     return;
 }
@@ -4347,9 +4362,9 @@ return;
 
 
 void MovementPWM(void){
-    CCP1CON = (0x0c)|((markspaceL&0x03)<<4);
-    CCPR1L = markspaceL>>2;
-    CCP2CON = (0x0c)|((markspaceR&0x03)<<4);
-    CCPR2L = markspaceR>>2;
+    CCP1CON = (0x0c)|((markspaceR&0x03)<<4);
+    CCPR1L = markspaceR>>2;
+    CCP2CON = (0x0c)|((markspaceL&0x03)<<4);
+    CCPR2L = markspaceL>>2;
     return;
 }
