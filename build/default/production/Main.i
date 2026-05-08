@@ -4155,7 +4155,7 @@ void UpdateLineData(void);
 int LEncoderReading = 0;
 
 int REncoderReading = 0;
-
+int disable_movement_system = 0;
 
 
 
@@ -4173,9 +4173,30 @@ void MovementSystem(void);
 void Move(unsigned int Speed, int RightRatio);
 int FollowLine(void);
 int LookUpRobotLineOffset(void);
+int LeftDistanceSensor();
+int RightDistanceSensor();
+int SlowDown(int leftSensorValue,int rightSensorValue,int Speed);
+void ChangeLane();
+int events_position = 0;
 
+int LeftDistanceSensor() {
 
+    ADCON0 = 0b0000011;
+    int leftSensorValue = 0;
+    do {
+        leftSensorValue = (ADRESH<<8)+ADRESL;
+    } while(ADCON0bits.GO);
+    return leftSensorValue;
+}
+int RightDistanceSensor() {
 
+    ADCON0 = 0b0000111;
+    int rightSensorValue = 0;
+    do {
+        rightSensorValue = (ADRESH<<8)+ADRESL;
+    } while(ADCON0bits.GO);
+    return rightSensorValue;
+}
 
 int ReadEncoderL(void){
     int pulse = 0;
@@ -4188,10 +4209,20 @@ int ReadEncoderL(void){
 
 }
 
+void ChangeLane() {
+    Move(0, -250);
+    WaitFor(1);
+    LATBbits.LB2 = 1;
+# 87 "Main.c"
+    Move(300,0);
+    WaitFor(2);
 
+    LATBbits.LB2 = 0;
+    disable_movement_system = 0;
+}
 
-void Turn(unsigned int Quarters){
-    int TotalPulses = Quarters * 130;
+void Turn(unsigned int Eighths){
+    int TotalPulses = Eighths * 60;
     int CurrentPulses = 0;
     while (CurrentPulses < TotalPulses){
         Move(0, 250);
@@ -4253,29 +4284,102 @@ int main(void){
     PWM_INIT();
     SetUpLEDs();
 
-    CurrentSpeed = 300;
+    CurrentSpeed = 500;
+    FlashLEDs(3);
 
-    while(1){
-        UpdateLineData();
-        MovementSystem();
+    int finished = 0;
+
+    int events[] = {1,2,3,1,2,4};
+
+    while(events_position < 6) {
+
+        if (disable_movement_system == 1) {
+            switch (events[events_position]) {
+                case 1:
+
+                    ChangeLane();
+                    disable_movement_system = 0;
+                    events_position += 1;
+                    break;
+                case 2:
+
+                    Move(0,0);
+                    FlashLEDs(3);
+                    events_position += 1;
+                    break;
+                case 3:
+
+                    Turn(4);
+                    disable_movement_system = 0;
+                    events_position += 1;
+                    break;
+                case 4:
+
+                    disable_movement_system = 1;
+                    events_position += 1;
+                    finished = 1;
+                    break;
+        }
+
+        }
+        else {
+            UpdateLineData();
+            MovementSystem();
+        }
+        while (finished == 1) {
+            disable_movement_system = 1;
+        }
     }
+# 218 "Main.c"
 }
 
+int SlowDown(int leftSensorValue,int rightSensorValue,int Speed){
 
+
+    int speed = 0;
+    if (leftSensorValue > 24000 || rightSensorValue > 24000) {
+        return 0;
+    }
+
+    if (leftSensorValue > rightSensorValue) {
+        return (Speed - ((leftSensorValue-4000) / 50));
+    }
+    else if (rightSensorValue > leftSensorValue) {
+        return (Speed - ((rightSensorValue-4000) / 50));
+    }
+    else {
+        return (Speed - ((((rightSensorValue+leftSensorValue)/2)-4000) / 50));
+    }
+}
 
 void MovementSystem(void){
     int Difference = FollowLine();
     if(Difference == -111){
-        Turn(2);
-        CurrentSpeed = 0;
+
+        disable_movement_system = 1;
+
+        CurrentSpeed = 500;
+
     }
     else if(Difference == 999){
         CurrentSpeed = 150;
         Difference = 0;
     }
     else{
-        CurrentSpeed = 300;
+        CurrentSpeed = 500;
     }
+
+    int rightSensorValue = RightDistanceSensor();
+    int leftSensorValue = LeftDistanceSensor();
+
+    if (rightSensorValue > 4000 || leftSensorValue > 4000){
+        CurrentSpeed = SlowDown(leftSensorValue,rightSensorValue,CurrentSpeed);
+    }
+
+    if (CurrentSpeed < 0) {
+        CurrentSpeed = 0;
+    }
+
     Move(CurrentSpeed, Difference);
 }
 
@@ -4309,7 +4413,7 @@ int FollowLine(void){
     return 30 * e * 1;
 
 }
-# 177 "Main.c"
+
 int LookUpRobotLineOffset(void){
     unsigned char inverted = (~linesensor) & 0xFF;
 
@@ -4333,6 +4437,7 @@ int LookUpRobotLineOffset(void){
 
 
         case 0xFF: return -111;
+        case 0x00: return -333;
 
         default: return 999;
     }

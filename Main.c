@@ -13,8 +13,8 @@ int REncoderReading = 0;
 int disable_movement_system = 0;
 
 #define _XTAL_FREQ 10000000
-#define QuarterPulses 130
-#define BaseSpeed 500
+#define EighthPulses 60
+#define BaseSpeed 350
 int CurrentSpeed = 0;
 #define K 30        // proportional gain
 #define Lambda 1
@@ -65,7 +65,7 @@ int ReadEncoderL(void){
 }
 
 void ChangeLane() {
-    Move(0, -250);
+    Turn(1);
     WaitFor(1);
     LED1 = 1;
     
@@ -91,15 +91,14 @@ void ChangeLane() {
     disable_movement_system = 0;
 }
 
-void Turn(unsigned int Quarters){
-    int TotalPulses = Quarters * QuarterPulses;
+void Turn(unsigned int Eighths){
+    int TotalPulses = Eighths * EighthPulses;
     int CurrentPulses = 0;
     while (CurrentPulses < TotalPulses){
-        Move(0, 350);
+        Move(0, 250);
         CurrentPulses += ReadEncoderL();
     }
     Move(0,0);
-    WaitFor(5);
 }
 
 void WaitFor(unsigned int TimeSeconds){
@@ -179,7 +178,8 @@ int main(void){
                     break;
                 case 3:
                     //Turn around
-                    Turn(2);
+                    Turn(4);
+                    WaitFor(5);
                     disable_movement_system = 0;
                     events_position += 1;
                     break;
