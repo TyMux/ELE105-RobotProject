@@ -10,11 +10,11 @@
 int LEncoderReading = 0;
 #define REncoder PORTCbits.RC5
 int REncoderReading = 0;
-
+int disable_movement_system = 0;
 
 #define _XTAL_FREQ 10000000
 #define QuarterPulses 130
-#define BaseSpeed 300
+#define BaseSpeed 500
 int CurrentSpeed = 0;
 #define K 30        // proportional gain
 #define Lambda 1
@@ -28,9 +28,30 @@ void MovementSystem(void);
 void Move(unsigned int Speed, int RightRatio);
 int FollowLine(void);
 int LookUpRobotLineOffset(void);
+int LeftDistanceSensor();
+int RightDistanceSensor();
+int SlowDown(int leftSensorValue,int rightSensorValue,int Speed);
+void ChangeLane();
+int events_position = 0;
 
-
-
+int LeftDistanceSensor() {
+    //LS is channel 0
+    ADCON0 = 0b0000011; //initialises ports and sets reading val to left sensor
+    int leftSensorValue = 0;
+    do {
+        leftSensorValue = (ADRESH<<8)+ADRESL; //saves val for ls to variable
+    } while(ADCON0bits.GO);  
+    return leftSensorValue;
+}
+int RightDistanceSensor() {
+    //RS is channel 1
+    ADCON0 = 0b0000111; //initialises ports and sets reading val to left sensor
+    int rightSensorValue = 0;
+    do {
+        rightSensorValue = (ADRESH<<8)+ADRESL;
+    } while(ADCON0bits.GO);
+    return rightSensorValue;
+}
 
 int ReadEncoderL(void){
     int pulse = 0;
@@ -43,13 +64,38 @@ int ReadEncoderL(void){
     
 }
 
-
+void ChangeLane() {
+    Move(0, -250);
+    WaitFor(1);
+    LED1 = 1;
+    
+    /*
+    UpdateLineData();
+    int Difference = FollowLine();
+    while (Difference != -333){
+        UpdateLineData();
+        Difference = FollowLine();
+        Move((BaseSpeed - 200),0);
+    }
+    
+    while (Difference == 999) {
+        UpdateLineData();
+        Difference = FollowLine();
+        Move((BaseSpeed - 200),0);
+    }*/
+    
+    Move(300,0);
+    WaitFor(2);
+    
+    LED1 = 0;
+    disable_movement_system = 0;
+}
 
 void Turn(unsigned int Quarters){
     int TotalPulses = Quarters * QuarterPulses;
     int CurrentPulses = 0;
     while (CurrentPulses < TotalPulses){
-        Move(0, 250);
+        Move(0, 350);
         CurrentPulses += ReadEncoderL();
     }
     Move(0,0);
@@ -107,22 +153,97 @@ int main(void){
     I2C_INIT();
     PWM_INIT();
     SetUpLEDs();
-
+        
     CurrentSpeed = BaseSpeed;
+    FlashLEDs(3);
+    
+    int finished = 0;
+    
+    int events[] = {1,2,3,1,2,4};
 
-    while(1){
-        UpdateLineData();
-        MovementSystem();
+    while(events_position < 6) {
+        
+        if (disable_movement_system == 1) {
+            switch (events[events_position]) {
+                case 1:
+                    //change lane
+                    ChangeLane();
+                    disable_movement_system = 0;
+                    events_position += 1;
+                    break;
+                case 2:
+                    //stop robot / lights
+                    Move(0,0);
+                    FlashLEDs(3);
+                    events_position += 1;
+                    break;
+                case 3:
+                    //Turn around
+                    Turn(2);
+                    disable_movement_system = 0;
+                    events_position += 1;
+                    break;
+                case 4:
+                    //End
+                    disable_movement_system = 1;
+                    events_position += 1;
+                    finished = 1;
+                    break;
+        }
+            
+        }
+        else {
+            UpdateLineData();
+            MovementSystem();
+        }
+        while (finished == 1) {
+            disable_movement_system = 1;
+        }
     }
+    
+    
+    
+    /*
+    while(1){
+        if (disable_movement_system == 1) {
+            
+        }
+        else {
+            UpdateLineData();
+            MovementSystem();
+        }
+        
+        
+    }*/
 }
 
-
+int SlowDown(int leftSensorValue,int rightSensorValue,int Speed){
+    //For the sake of decency we'll use the closest sensor value.
+    //Using ranges of 24000 - 4000
+    int speed = 0;
+    if (leftSensorValue > 24000 || rightSensorValue > 24000) {
+        return 0;
+    }
+    
+    if (leftSensorValue > rightSensorValue) {
+        return (Speed - ((leftSensorValue-4000) / 50));
+    }
+    else if (rightSensorValue > leftSensorValue) {
+        return (Speed - ((rightSensorValue-4000) / 50));
+    }
+    else {
+        return (Speed - ((((rightSensorValue+leftSensorValue)/2)-4000) / 50));
+    }
+}
 
 void MovementSystem(void){
     int Difference = FollowLine();
     if(Difference == -111){
-        Turn(2);
-        CurrentSpeed = 0;
+        //This means there is a full line.
+        disable_movement_system = 1;
+        //Turn(2);
+        CurrentSpeed = BaseSpeed;
+        
     }
     else if(Difference == 999){
         CurrentSpeed = 150;
@@ -131,6 +252,18 @@ void MovementSystem(void){
     else{
         CurrentSpeed = BaseSpeed;
     }
+    
+    int rightSensorValue = RightDistanceSensor(); 
+    int leftSensorValue = LeftDistanceSensor(); 
+    
+    if (rightSensorValue > 4000 || leftSensorValue > 4000){
+        CurrentSpeed = SlowDown(leftSensorValue,rightSensorValue,CurrentSpeed);
+    }
+    
+    if (CurrentSpeed < 0) {
+        CurrentSpeed = 0;
+    }
+    
     Move(CurrentSpeed, Difference);
 }
 
@@ -165,18 +298,9 @@ int FollowLine(void){ //  Returns the difference
 
 }
 
-
-
-    
-
-
-
-
-
-
 int LookUpRobotLineOffset(void){
     unsigned char inverted = (~linesensor) & 0xFF; // REMOVE THIS LATER
-    //switch(linesensor){ Add this later
+    //switch(linesensor){
     switch(inverted){
 
         case 0x80: return -12;
@@ -197,6 +321,7 @@ int LookUpRobotLineOffset(void){
         
         
         case 0xFF: return -111;
+        case 0x00: return -333;
         
         default: return 999;
     }
