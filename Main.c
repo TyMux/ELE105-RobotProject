@@ -14,7 +14,7 @@ int disable_movement_system = 0;
 
 #define _XTAL_FREQ 10000000
 #define EighthPulses 60
-#define BaseSpeed 350
+#define BaseSpeed 400
 int CurrentSpeed = 0;
 #define K 30        // proportional gain
 #define Lambda 1
@@ -25,7 +25,9 @@ void SetUpLEDs(void);
 void FlashLEDs(unsigned int Flashes);
 void ShowTest(void);
 void MovementSystem(void);
+void Turn(unsigned int Eighths);
 void Move(unsigned int Speed, int RightRatio);
+void MoveFor(unsigned int Pulses, unsigned int Speed, int Difference);
 int FollowLine(void);
 int LookUpRobotLineOffset(void);
 int LeftDistanceSensor();
@@ -83,9 +85,7 @@ void ChangeLane() {
         Difference = FollowLine();
         Move((BaseSpeed - 200),0);
     }*/
-    
-    Move(300,0);
-    WaitFor(2);
+    MoveFor(170, 300, 0);
     
     LED1 = 0;
     disable_movement_system = 0;
@@ -95,7 +95,7 @@ void Turn(unsigned int Eighths){
     int TotalPulses = Eighths * EighthPulses;
     int CurrentPulses = 0;
     while (CurrentPulses < TotalPulses){
-        Move(0, 250);
+        Move(0, -250);
         CurrentPulses += ReadEncoderL();
     }
     Move(0,0);
@@ -267,7 +267,17 @@ void MovementSystem(void){
     Move(CurrentSpeed, Difference);
 }
 
-
+void MoveFor(unsigned int Pulses, unsigned int Speed, int Difference){
+    int CurrentPulses = 0;
+    while (CurrentPulses < Pulses){
+        Move(Speed, Difference);
+        CurrentPulses += ReadEncoderL();
+    }
+    Move(0,0);
+    
+    
+    
+}
 void Move(unsigned int Speed, int Difference){
 
     if(Speed > 1023){

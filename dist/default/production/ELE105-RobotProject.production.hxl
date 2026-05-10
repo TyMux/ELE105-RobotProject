@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- C:\Users\cex\AppData\Local\Temp\xcAsei4.0\driver_tmp_3.o
+ C:\Users\bobby\AppData\Local\Temp\xcAs6no.0\driver_tmp_3.o
  -Odist/default/production\ELE105-RobotProject.production.hex
  -logfile=dist/default/production\ELE105-RobotProject.production.hxl
  -addressing=1
@@ -9,21 +9,21 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 3h		(C:\Users\cex\AppData\Local\Temp\xcAsei4.0\driver_tmp_3.o)
-  200h - C13h		(C:\Users\cex\AppData\Local\Temp\xcAsei4.0\driver_tmp_3.o)
-  FFCh - FFFh		(C:\Users\cex\AppData\Local\Temp\xcAsei4.0\driver_tmp_3.o)
-  300000h - 300003h		(C:\Users\cex\AppData\Local\Temp\xcAsei4.0\driver_tmp_3.o)
-  300006h - 300007h		(C:\Users\cex\AppData\Local\Temp\xcAsei4.0\driver_tmp_3.o)
+  0h - 3h		(C:\Users\bobby\AppData\Local\Temp\xcAs6no.0\driver_tmp_3.o)
+  200h - C5Bh		(C:\Users\bobby\AppData\Local\Temp\xcAs6no.0\driver_tmp_3.o)
+  FFCh - FFFh		(C:\Users\bobby\AppData\Local\Temp\xcAs6no.0\driver_tmp_3.o)
+  300000h - 300003h		(C:\Users\bobby\AppData\Local\Temp\xcAs6no.0\driver_tmp_3.o)
+  300006h - 300007h		(C:\Users\bobby\AppData\Local\Temp\xcAs6no.0\driver_tmp_3.o)
  Unused ranges:
   4h - 1FFh
-  C14h - FFBh
+  C5Ch - FFBh
   1000h - 2FFFFFh
   300004h - 300005h
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (C:\Users\cex\AppData\Local\Temp\xcAsei4.0\driver_tmp_3.o)
+  H1 = Input file             (C:\Users\bobby\AppData\Local\Temp\xcAs6no.0\driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
@@ -190,7 +190,11 @@
 00000BE0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000BF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000C00 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000C10 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
+00000C10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000C20 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000C30 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000C40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000C50 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- --
 ----------------------------------------------------------
 00000FF0 | -- -- -- -- -- -- -- -- -- -- -- -- H1 H1 H1 H1
 ----------------------------------------------------------

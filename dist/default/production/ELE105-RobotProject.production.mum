@@ -1,6 +1,6 @@
 
 18F2221 Memory Summary:
-    Program space        used   A1Ch (  2588) of  1000h bytes   ( 63.2%)
+    Program space        used   A64h (  2660) of  1000h bytes   ( 64.9%)
     Data space           used    42h (    66) of   200h bytes   ( 12.9%)
     Configuration bits   used     4h (     4) of     7h words   ( 57.1%)
     EEPROM space         used     0h (     0) of   100h bytes   (  0.0%)
