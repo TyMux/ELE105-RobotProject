@@ -4170,7 +4170,9 @@ void SetUpLEDs(void);
 void FlashLEDs(unsigned int Flashes);
 void ShowTest(void);
 void MovementSystem(void);
+void Turn(unsigned int Eighths);
 void Move(unsigned int Speed, int RightRatio);
+void MoveFor(unsigned int Pulses, unsigned int Speed, int Difference);
 int FollowLine(void);
 int LookUpRobotLineOffset(void);
 int LeftDistanceSensor();
@@ -4210,12 +4212,11 @@ int ReadEncoderL(void){
 }
 
 void ChangeLane() {
-    Move(0, -250);
+    Turn(1);
     WaitFor(1);
     LATBbits.LB2 = 1;
-# 87 "Main.c"
-    Move(300,0);
-    WaitFor(2);
+# 88 "Main.c"
+    MoveFor(170, 300, 0);
 
     LATBbits.LB2 = 0;
     disable_movement_system = 0;
@@ -4225,11 +4226,10 @@ void Turn(unsigned int Eighths){
     int TotalPulses = Eighths * 60;
     int CurrentPulses = 0;
     while (CurrentPulses < TotalPulses){
-        Move(0, 250);
+        Move(0, -250);
         CurrentPulses += ReadEncoderL();
     }
     Move(0,0);
-    WaitFor(5);
 }
 
 void WaitFor(unsigned int TimeSeconds){
@@ -4284,7 +4284,7 @@ int main(void){
     PWM_INIT();
     SetUpLEDs();
 
-    CurrentSpeed = 500;
+    CurrentSpeed = 400;
     FlashLEDs(3);
 
     int finished = 0;
@@ -4310,6 +4310,7 @@ int main(void){
                 case 3:
 
                     Turn(4);
+                    WaitFor(5);
                     disable_movement_system = 0;
                     events_position += 1;
                     break;
@@ -4358,7 +4359,7 @@ void MovementSystem(void){
 
         disable_movement_system = 1;
 
-        CurrentSpeed = 500;
+        CurrentSpeed = 400;
 
     }
     else if(Difference == 999){
@@ -4366,7 +4367,7 @@ void MovementSystem(void){
         Difference = 0;
     }
     else{
-        CurrentSpeed = 500;
+        CurrentSpeed = 400;
     }
 
     int rightSensorValue = RightDistanceSensor();
@@ -4383,7 +4384,17 @@ void MovementSystem(void){
     Move(CurrentSpeed, Difference);
 }
 
+void MoveFor(unsigned int Pulses, unsigned int Speed, int Difference){
+    int CurrentPulses = 0;
+    while (CurrentPulses < Pulses){
+        Move(Speed, Difference);
+        CurrentPulses += ReadEncoderL();
+    }
+    Move(0,0);
 
+
+
+}
 void Move(unsigned int Speed, int Difference){
 
     if(Speed > 1023){

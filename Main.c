@@ -1,3 +1,14 @@
+/* File:   Main.c 
+ * Author: Group 37 - Abdul-Malik Adegbite, Tysen Lai, Bobby Pickard
+ * This is the main section of our code. 
+ * This program is to simulate motorway-like driving on a robot through the use
+ of feedback to control the robot to perform following line, change lane, turn,
+ automatic braking smoothly. It also performs 4 key events including: Change 
+ lane, turn around, stop and flash LEDs, and End program. It does this through
+ the use of an error signal, and a proportional gain which are used to calculate
+ the output speed of both left and right motors of the robot.
+ */
+
 #include <xc.h>
 #include "PWM.h"
 #include "I2C.h"
@@ -14,7 +25,7 @@ int disable_movement_system = 0;
 
 #define _XTAL_FREQ 10000000
 #define EighthPulses 60
-#define BaseSpeed 350
+#define BaseSpeed 400
 int CurrentSpeed = 0;
 #define K 30        // proportional gain
 #define Lambda 1
@@ -25,7 +36,9 @@ void SetUpLEDs(void);
 void FlashLEDs(unsigned int Flashes);
 void ShowTest(void);
 void MovementSystem(void);
+void Turn(unsigned int Eighths);
 void Move(unsigned int Speed, int RightRatio);
+void MoveFor(unsigned int Pulses, unsigned int Speed, int Difference);
 int FollowLine(void);
 int LookUpRobotLineOffset(void);
 int LeftDistanceSensor();
@@ -83,9 +96,7 @@ void ChangeLane() {
         Difference = FollowLine();
         Move((BaseSpeed - 200),0);
     }*/
-    
-    Move(300,0);
-    WaitFor(2);
+    MoveFor(170, 300, 0);
     
     LED1 = 0;
     disable_movement_system = 0;
@@ -95,7 +106,7 @@ void Turn(unsigned int Eighths){
     int TotalPulses = Eighths * EighthPulses;
     int CurrentPulses = 0;
     while (CurrentPulses < TotalPulses){
-        Move(0, 250);
+        Move(0, -250);
         CurrentPulses += ReadEncoderL();
     }
     Move(0,0);
@@ -121,13 +132,13 @@ void SetUpLEDs(void){
 void FlashLEDs(unsigned int Flashes){
     SetUpLEDs();
     for(unsigned int i = 0; i < Flashes; i++){
-        LED1 = 1;
+        LED1 = 1; // turn on the LEDs
         LED2 = 1;
         LED3 = 1;
         LED4 = 1;
         WaitFor(1);
 
-        LED1 = 0;
+        LED1 = 0; // turn off the LEDs
         LED2 = 0;
         LED3 = 0;
         LED4 = 0;
@@ -154,11 +165,11 @@ int main(void){
     SetUpLEDs();
         
     CurrentSpeed = BaseSpeed;
-    FlashLEDs(3);
+    FlashLEDs(3); // parameter tells us how many times we want the LEDs to flash
     
     int finished = 0;
     
-    int events[] = {1,2,3,1,2,4};
+    int events[] = {1,2,3,1,2,4}; // order at which the events occur
 
     while(events_position < 6) {
         
@@ -267,17 +278,28 @@ void MovementSystem(void){
     Move(CurrentSpeed, Difference);
 }
 
-
-void Move(unsigned int Speed, int Difference){
+void MoveFor(unsigned int Pulses, unsigned int Speed, int Difference){
+    int CurrentPulses = 0;
+    while (CurrentPulses < Pulses){
+        Move(Speed, Difference);
+        CurrentPulses += ReadEncoderL();
+    }
+    Move(0,0);
+    
+    
+    
+}
+// function that sets left and right motor speeds
+void Move(unsigned int Speed, int Difference){ 
 
     if(Speed > 1023){
-        Speed = 1023;
+        Speed = 1023; // capping velocity at 1023, this is the max possible speed
     }
     
     int LeftSpeed = Speed - Difference;
     int RightSpeed = Speed + Difference;
 
-    goforward(RightSpeed, LeftSpeed);
+    goforward(RightSpeed, LeftSpeed); 
 }
 
 
@@ -297,7 +319,7 @@ int FollowLine(void){ //  Returns the difference
     return K * e * Lambda;
 
 }
-
+// Convert line sensor to angle offset
 int LookUpRobotLineOffset(void){
     unsigned char inverted = (~linesensor) & 0xFF; // REMOVE THIS LATER
     //switch(linesensor){
@@ -320,8 +342,8 @@ int LookUpRobotLineOffset(void){
         case 0x01: return 12;
         
         
-        case 0xFF: return -111;
-        case 0x00: return -333;
+        case 0xFF: return -111; // Full line detected
+        case 0x00: return -333; 
         
         default: return 999;
     }
