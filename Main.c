@@ -47,6 +47,8 @@ int SlowDown(int leftSensorValue,int rightSensorValue,int Speed);
 void ChangeLane();
 int events_position = 0;
 
+
+// Reading distance to an object off left sensor
 int LeftDistanceSensor() {
     //LS is channel 0
     ADCON0 = 0b0000011; //initialises ports and sets reading val to left sensor
@@ -56,6 +58,7 @@ int LeftDistanceSensor() {
     } while(ADCON0bits.GO);  
     return leftSensorValue;
 }
+// Reading distance to an object off right sensor
 int RightDistanceSensor() {
     //RS is channel 1
     ADCON0 = 0b0000111; //initialises ports and sets reading val to left sensor
@@ -66,6 +69,7 @@ int RightDistanceSensor() {
     return rightSensorValue;
 }
 
+// Used to read the number of pulses performed by the  left encoder
 int ReadEncoderL(void){
     int pulse = 0;
     if(LEncoder == 1 && LEncoderReading == 0) {
@@ -77,6 +81,7 @@ int ReadEncoderL(void){
     
 }
 
+// Event function used to change lanes
 void ChangeLane() {
     Turn(1);
     WaitFor(1);
@@ -102,6 +107,8 @@ void ChangeLane() {
     disable_movement_system = 0;
 }
 
+// General turn function calculated in 8ths of a turn
+// Robot will stop moving when turning (ignores current speed for the duration)
 void Turn(unsigned int Eighths){
     int TotalPulses = Eighths * EighthPulses;
     int CurrentPulses = 0;
@@ -109,9 +116,10 @@ void Turn(unsigned int Eighths){
         Move(0, -250);
         CurrentPulses += ReadEncoderL();
     }
-    Move(0,0);
+    Move(0,0); // Resets speed
 }
 
+// Helper function to delay certain actions
 void WaitFor(unsigned int TimeSeconds){
     for(unsigned int i = 0; i < TimeSeconds * 10; i++){
         __delay_ms(100);
@@ -119,7 +127,7 @@ void WaitFor(unsigned int TimeSeconds){
 }
 
 
-
+// resets all LEDS to 0 or turn them off
 void SetUpLEDs(void){
     TRISBbits.TRISB2 = 0;
     TRISBbits.TRISB3 = 0;
@@ -128,7 +136,7 @@ void SetUpLEDs(void){
 }
 
 
-
+// To do the 3 flash requirement
 void FlashLEDs(unsigned int Flashes){
     SetUpLEDs();
     for(unsigned int i = 0; i < Flashes; i++){
@@ -147,7 +155,7 @@ void FlashLEDs(unsigned int Flashes){
 }
 
 
-
+// This was a test function to show if the line sensor was working
 void ShowTest(void){
     UpdateLineData();
 
@@ -158,7 +166,7 @@ void ShowTest(void){
 }
 
 
-
+// Where it all happens
 int main(void){
     I2C_INIT();
     PWM_INIT();
@@ -228,6 +236,7 @@ int main(void){
     }*/
 }
 
+// Used to gradually reduce the current speed of the robot
 int SlowDown(int leftSensorValue,int rightSensorValue,int Speed){
     //For the sake of decency we'll use the closest sensor value.
     //Using ranges of 24000 - 4000
@@ -247,6 +256,7 @@ int SlowDown(int leftSensorValue,int rightSensorValue,int Speed){
     }
 }
 
+// Contains a bunch of checks to ensure the movement of the robot behaviours appropiately
 void MovementSystem(void){
     int Difference = FollowLine();
     if(Difference == -111){
@@ -278,6 +288,7 @@ void MovementSystem(void){
     Move(CurrentSpeed, Difference);
 }
 
+// Used only to change lanes forces the robot to move at a given difference and speed for an amount of pulses
 void MoveFor(unsigned int Pulses, unsigned int Speed, int Difference){
     int CurrentPulses = 0;
     while (CurrentPulses < Pulses){
@@ -303,7 +314,7 @@ void Move(unsigned int Speed, int Difference){
 }
 
 
-
+// All this does is calculates the difference in speeds the motors needs to move
 int FollowLine(void){ //  Returns the difference
 
     int theta = LookUpRobotLineOffset();

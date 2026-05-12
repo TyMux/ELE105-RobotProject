@@ -50,12 +50,12 @@ void goforward(int RightSpeed, int LeftSpeed){
     markspaceR = RightSpeed;
     
     if(LeftSpeed < 0){
-        Leftmotor1A = 1;    //Left motor forward;
+        Leftmotor1A = 1;  
         Leftmotor2A = 0; 
         markspaceL = -markspaceL;
     }
     else{
-        Leftmotor1A = 0;    //Left motor forward;
+        Leftmotor1A = 0;    
         Leftmotor2A = 1; 
     }
     if(RightSpeed < 0){
